@@ -16,9 +16,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #4a3723; /* Darker shade of primary */
-    --foreground: #ededed;
-    --primary: #8b6f47;
+    --background: #ffffff; /* Darker shade of primary */
+    --foreground: #0a0a0a;
+    --primary: #000000;
     --primary-hover: #a68a64;
   }
 }

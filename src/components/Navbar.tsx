@@ -12,7 +12,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-[var(--background)] shadow-md sticky top-0 z-10">
+    <nav className="bg-[#8b6f47] shadow-md sticky top-0 z-10">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/">
           <div className="flex items-center gap-2">
@@ -22,7 +22,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 justify-end">
+        <ul className="hidden md:flex gap-6 justify-end font-bold text-lg">
           <li>
             <Link href="/" className="hover:text-[var(--primary)]">
               Home

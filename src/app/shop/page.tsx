@@ -2,23 +2,7 @@
 
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { Product } from "@/lib/types";
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Ethiopian Yirgacheffe",
-    description: "Light roast, floral notes",
-    image: "/images/yirgacheffe.jpg",
-  },
-  {
-    id: 2,
-    name: "Sidamo Guji",
-    description: "Medium roast, fruity undertones",
-    image: "/images/sidamo.jpg",
-  },
-  // Add more products as needed
-];
+import { Product, products } from "@/lib/types";
 
 export default function Shop() {
   const [search, setSearch] = useState("");

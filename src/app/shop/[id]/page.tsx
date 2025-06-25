@@ -1,22 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Product } from "@/lib/types";
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Ethiopian Yirgacheffe",
-    description: "Light roast, floral notes",
-    image: "/images/yirgacheffe.jpg",
-  },
-  {
-    id: 2,
-    name: "Sidamo Guji",
-    description: "Medium roast, fruity undertones",
-    image: "/images/sidamo.jpg",
-  },
-];
+import { Product, products } from "@/lib/types";
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === parseInt(params.id));
@@ -45,7 +30,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <div className="flex justify-center">
-              <Link href="/quote" className="coffee-button">
+              <Link href={`/quote?productId=${product.id}`} className="coffee-button">
                 Request a Quote
               </Link>
             </div>
