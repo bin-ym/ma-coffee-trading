@@ -25,12 +25,16 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
             className="rounded mx-auto"
           />
           <div className="flex flex-col gap-4 max-w-md">
-            <p className="text-gray-600 dark:text-gray-300">{product.description}</p>
-            <p className="text-gray-600 dark:text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p className="text-black">{product.description}</p>
+            <p className="text-black">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
             <div className="flex justify-center">
-              <Link href={`/quote?productId=${product.id}`} className="coffee-button">
+              <Link
+                href={`/quote?productId=${product.id}`}
+                className="coffee-button"
+              >
                 Request a Quote
               </Link>
             </div>

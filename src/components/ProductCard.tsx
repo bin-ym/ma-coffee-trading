@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         className="rounded mx-auto"
       />
       <h3 className="text-lg font-semibold">{product.name}</h3>
-      <p className="text-gray-600 dark:text-gray-300">{product.description}</p>
+      <p className="text-black">{product.description}</p>
       <Link href={`/shop/${product.id}`}>
         <button className="coffee-button mt-2">View Details</button>
       </Link>
