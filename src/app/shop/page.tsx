@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/lib/types";
+import { allProducts } from "@/lib/products"; // Use allProducts instead of products
 
 export default function Shop() {
   const [search, setSearch] = useState("");
 
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = allProducts.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 

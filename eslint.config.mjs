@@ -13,25 +13,25 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
-      // Configure no-unused-vars to ignore TypeScript types
+      // Relax no-unused-vars for TypeScript types
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          argsIgnorePattern: "^_", // Ignore variables starting with _
+          argsIgnorePattern: "^_", // Ignore variables/args starting with _
           varsIgnorePattern: "^_", // Ignore variables starting with _
           caughtErrorsIgnorePattern: "^_", // Ignore caught errors starting with _
           ignoreRestSiblings: true, // Allow unused variables in rest/spread patterns
-          // Ignore TypeScript types, interfaces, and enums
           vars: "all",
           args: "after-used",
-          ignoreTSDecorators: true, // Ignore unused TS decorators
+          ignoreTSDecorators: true, // Ignore unused TS types, interfaces, enums
         },
       ],
-      // Optional: Add other common rule customizations for Next.js/TypeScript
-      "react/prop-types": "off", // Disable prop-types (not needed with TypeScript)
+      // Additional rules for Next.js/TypeScript
+      "react/prop-types": "off", // Disable prop-types (TypeScript handles this)
       "@typescript-eslint/explicit-module-boundary-types": "off", // Allow implicit return types
-      "no-console": ["warn", { allow: ["warn", "error"] }], // Allow console.warn and console.error
+      "no-console": ["warn", { allow: ["warn", "error"] }], // Allow console.warn/error
       "react/jsx-key": "error", // Enforce JSX key prop for lists
+      "@typescript-eslint/no-explicit-any": "warn", // Warn on use of 'any' type
     },
   },
 ];
