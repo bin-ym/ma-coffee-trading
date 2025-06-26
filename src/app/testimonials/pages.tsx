@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function TestimonialsPage() { 
+export default function TestimonialsPage() {
   return (
     <div>
       <h1>Testimonial Page</h1>
-      {/* Your content here */}
     </div>
   );
 }
