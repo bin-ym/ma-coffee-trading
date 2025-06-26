@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Product } from "@/lib/types"; // Import Product type
 import { allProducts } from "@/lib/products"; // Import your consolidated products data
 
 export async function generateStaticParams() {
