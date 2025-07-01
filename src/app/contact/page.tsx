@@ -18,7 +18,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission (e.g., API call or email service)
-    console.log("Contact form submitted:", formData);
+    console.error("Contact form submitted:", formData);
   };
 
   return (

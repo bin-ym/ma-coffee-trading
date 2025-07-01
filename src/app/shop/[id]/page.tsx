@@ -1,23 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { allProducts } from "@/lib/products"; // Import your consolidated products data
+import { allProducts } from "@/lib/products";
+import type { GetServerSidePropsContext } from "next";
 
-export async function generateStaticParams() {
-  return allProducts.map((product) => ({
-    id: product.id.toString(),
-  }));
-}
-
-/**
- * ProductDetail component for displaying individual product details.
- * It receives `params` as props, which contains the dynamic segment `id`.
- * @param {object} props - The component props.
- * @param {object} props.params - Object containing dynamic route parameters.
- * @param {string} props.params.id - The product ID from the URL.
- */
-export default function ProductDetail({ params }: { params: { id: string } }) {
-  const product = allProducts.find((p) => p.id === parseInt(params.id));
+export default function ProductDetail({
+  params,
+}: {
+  params: GetServerSidePropsContext["params"];
+}) {
+  const product = allProducts.find((p) => p.id === parseInt(params?.id as string));
 
   if (!product) {
     notFound();
@@ -47,7 +39,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               <Link
                 href={`/quote?productId=${product.id}`}
                 className="px-6 py-3 font-semibold text-white transition duration-300 ease-in-out transform rounded-full shadow-lg coffee-button hover:scale-105"
-                style={{ backgroundColor: 'var(--accent-color, #6F4E37)' }}
+                style={{ backgroundColor: "var(--accent-color, #6F4E37)" }}
               >
                 Request a Quote
               </Link>
@@ -57,4 +49,10 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
       </main>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  return allProducts.map((product) => ({
+    id: product.id.toString(),
+  }));
 }

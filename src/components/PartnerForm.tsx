@@ -11,20 +11,24 @@ export default function PartnerForm() {
     message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission (e.g., API call)
-    console.log("Partner form submitted:", formData);
+    console.error("Partner form submitted:", formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium">Name</label>
+        <label htmlFor="name" className="block text-sm font-medium">
+          Name
+        </label>
         <input
           type="text"
           id="name"
@@ -36,7 +40,9 @@ export default function PartnerForm() {
         />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium">Email</label>
+        <label htmlFor="email" className="block text-sm font-medium">
+          Email
+        </label>
         <input
           type="email"
           id="email"
@@ -48,7 +54,9 @@ export default function PartnerForm() {
         />
       </div>
       <div>
-        <label htmlFor="company" className="block text-sm font-medium">Company</label>
+        <label htmlFor="company" className="block text-sm font-medium">
+          Company
+        </label>
         <input
           type="text"
           id="company"
@@ -59,7 +67,9 @@ export default function PartnerForm() {
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-medium">Message</label>
+        <label htmlFor="message" className="block text-sm font-medium">
+          Message
+        </label>
         <textarea
           id="message"
           name="message"
@@ -69,7 +79,9 @@ export default function PartnerForm() {
           rows={4}
         />
       </div>
-      <button type="submit" className="coffee-button">Submit Partnership Request</button>
+      <button type="submit" className="coffee-button">
+        Submit Partnership Request
+      </button>
     </form>
   );
 }

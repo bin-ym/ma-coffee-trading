@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
-import { allProducts } from "@/lib/products"; // Use allProducts instead of products
+import { allProducts } from "@/lib/products";
 
 export default function Shop() {
   const [search, setSearch] = useState("");

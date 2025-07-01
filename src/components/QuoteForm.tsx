@@ -1,38 +1,44 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { products } from "@/lib/types";
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { products } from '@/lib/types';
 
 export default function QuoteForm() {
   const searchParams = useSearchParams();
-  const productId = searchParams.get("productId");
+  const productId = searchParams.get('productId');
 
-  const initialProduct = products.find((p) => p.id === parseInt(productId || ""))?.name || "";
+  const initialProduct =
+    products.find((p) => p.id === parseInt(productId || ''))?.name || '';
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: '',
+    email: '',
     product: initialProduct,
-    quantity: "",
-    message: "",
+    quantity: '',
+    message: '',
   });
 
   useEffect(() => {
     if (productId) {
-      const productName = products.find((p) => p.id === parseInt(productId))?.name || "";
+      const productName =
+        products.find((p) => p.id === parseInt(productId))?.name || '';
       setFormData((prev) => ({ ...prev, product: productName }));
     }
   }, [productId]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: name === "quantity" ? value : value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Quote form submitted:", {
+    console.error('Quote form submitted:', {
       ...formData,
       quantity: parseInt(formData.quantity) || 0,
     });
@@ -94,7 +100,9 @@ export default function QuoteForm() {
             onChange={handleChange}
             className="w-full border border-black rounded-lg p-3 sm:p-4 text-[var(--foreground)] focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
           >
-            <option value="" disabled>Select a product</option>
+            <option value="" disabled>
+              Select a product
+            </option>
             {products.map((product) => (
               <option key={product.id} value={product.name}>
                 {product.name}
@@ -126,26 +134,26 @@ export default function QuoteForm() {
         <label
           htmlFor="message"
           className="block text-sm sm:text-base font-semibold text-[var(--foreground)] mb-2"
-          >
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full border border-black rounded-lg p-3 sm:p-4 text-[var(--foreground)] focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
-            rows={6}
-          />
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="coffee-button px-10 py-4 sm:px-12 sm:py-5 text-base sm:text-lg font-semibold shadow-md hover:scale-105 transition-transform"
-          >
-            Submit Quote Request
-          </button>
-        </div>
-      </form>
-    );
+        >
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className="w-full border border-black rounded-lg p-3 sm:p-4 text-[var(--foreground)] focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition-all"
+          rows={6}
+        />
+      </div>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="coffee-button px-10 py-4 sm:px-12 sm:py-5 text-base sm:text-lg font-semibold shadow-md hover:scale-105 transition-transform"
+        >
+          Submit Quote Request
+        </button>
+      </div>
+    </form>
+  );
 }

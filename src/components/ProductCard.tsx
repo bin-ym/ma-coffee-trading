@@ -14,12 +14,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         alt={product.name}
         width={200}
         height={200}
-        className="rounded mx-auto"
+        className="mx-auto rounded"
       />
       <h3 className="text-lg font-semibold">{product.name}</h3>
       <p className="text-black">{product.description}</p>
       <Link href={`/shop/${product.id}`}>
-        <button className="coffee-button mt-2">View Details</button>
+        <button className="mt-2 coffee-button">View Details</button>
       </Link>
     </div>
   );
