@@ -9,9 +9,9 @@ const products: Product[] = [
 
 export default function Products() {
   return (
-    <div className="container mx-auto py-8">
+    <div className="container py-8 mx-auto">
       <h1 className="text-3xl font-bold text-[var(--foreground)] mb-6">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

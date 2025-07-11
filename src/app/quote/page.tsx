@@ -4,16 +4,9 @@ import QuoteForm from '@/components/QuoteForm'; // Adjust path as needed
 
 export default function QuotePage() {
   return (
-    <div className="container mx-auto min-h-screen py-8 flex justify-center">
-      <main className="flex flex-col gap-12 w-full max-w-5xl">
-        <section className="text-center">
-          <h1 className="text-3xl font-bold text-[var(--foreground)] mb-4">
-            Request a Quote
-          </h1>
-          <p className="text-lg text-black max-w-2xl mx-auto">
-            Fill out the form below to request a quote for our coffee products.
-          </p>
-        </section>
+    <div className="container flex justify-center min-h-screen py-8 mx-auto">
+      <main className="flex flex-col w-full max-w-5xl gap-10">
+        <section className="text-center" /> 
         <Suspense fallback={<div>Loading...</div>}>
           <QuoteForm />
         </Suspense>

@@ -1,50 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const closeMenu = () => setIsOpen(false);
+
+  // Close on escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
-    <nav className="bg-[#8b6f47] shadow-md sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/">
-          <div className="flex items-center gap-2">
-            <Image src="/images/logo.png" alt="MA Coffee Trading" width={40} height={40} />
-            <span className="text-xl font-bold text-[var(--foreground)]">MA Coffee Trading</span>
-          </div>
+    <nav className="bg-[#8b6f47] shadow-md sticky top-0 z-50">
+      <div className="container flex items-center justify-between px-4 py-4 mx-auto">
+        <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">
+          <Image
+            src="/images/logo.png"
+            alt="MA Coffee Trading"
+            width={40}
+            height={40}
+            priority
+          />
+          <span className="text-xl font-bold text-[var(--foreground)]">
+            MA Coffee Trading
+          </span>
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 justify-end font-bold text-lg">
-          <li>
-            <Link href="/" className="hover:text-[var(--primary)]">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/shop" className="hover:text-[var(--primary)]">
-              Shop
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-[var(--primary)]">
-              Contact Us
-            </Link>
-          </li>
+        <ul className="hidden gap-6 text-lg font-bold md:flex">
+          {[
+            { href: "/", label: "Home" },
+            { href: "/shop", label: "Shop" },
+            { href: "/contact", label: "Contact Us" },
+          ].map(({ href, label }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                className="relative text-[var(--foreground)] hover:text-[var(--primary)] transition-colors after:block after:h-[2px] after:bg-[var(--primary)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
-        {/* Hamburger Button */}
+        {/* Mobile Toggle Button */}
         <button
           className="md:hidden text-[var(--foreground)] focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
         >
           <svg
             className="w-6 h-6"
@@ -73,25 +88,30 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <ul className="md:hidden flex flex-col gap-4 bg-[var(--background)] px-4 py-4 shadow-md">
-          <li>
-            <Link href="/" className="hover:text-[var(--primary)]" onClick={toggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/shop" className="hover:text-[var(--primary)]" onClick={toggleMenu}>
-              Shop
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-[var(--primary)]" onClick={toggleMenu}>
-              Contact Us
-            </Link>
-          </li>
+      <div
+        id="mobile-menu"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-screen py-4 px-4" : "max-h-0"
+        }`}
+      >
+        <ul className="flex flex-col gap-4 bg-[var(--background)] rounded-b-md shadow-md">
+          {[
+            { href: "/", label: "Home" },
+            { href: "/shop", label: "Shop" },
+            { href: "/contact", label: "Contact Us" },
+          ].map(({ href, label }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                onClick={closeMenu}
+                className="block py-2 px-2 text-[var(--foreground)] hover:text-[var(--primary)] transition-colors"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
-      )}
+      </div>
     </nav>
   );
 }

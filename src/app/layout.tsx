@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Lora, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
-  variable: "--font-sans",
+const lora = Lora({
   subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-sans",
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-mono",
+const playfair = Playfair_Display({
   subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-serif",
 });
+
+// Alternative: Vibrant fonts
+// import { Poppins, Montserrat } from "next/font/google";
+// const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans" });
+// const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-serif" });
+
+// Alternative: Unique fonts
+// import { Raleway, Cinzel } from "next/font/google";
+// const raleway = Raleway({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans" });
+// const cinzel = Cinzel({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
   title: "MA Coffee Trading PLC",
@@ -31,10 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${firaCode.variable} antialiased flex flex-col min-h-screen`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${lora.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)]`}>
         <Navbar />
-        <main className="flex-grow flex justify-center">{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
