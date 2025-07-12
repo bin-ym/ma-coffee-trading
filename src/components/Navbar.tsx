@@ -20,7 +20,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-[#8b6f47] shadow-md sticky top-0 z-50">
+    <nav className="bg-[#6b4e31] shadow-md sticky top-0 z-50">
       <div className="container flex items-center justify-between px-4 py-4 mx-auto">
         <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">
           <Image
